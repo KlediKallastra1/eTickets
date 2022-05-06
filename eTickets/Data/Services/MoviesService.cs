@@ -68,7 +68,7 @@ namespace eTickets.Data.Services
         {
             var dbMovie = await _context.Movies.FirstOrDefaultAsync(n => n.Id == model.Id);
 
-            if(dbMovie == null)
+            if(dbMovie != null)
             {
                 dbMovie.Name = model.Name;
                 dbMovie.Description = model.Description;
