@@ -71,7 +71,9 @@
                 <div class="col-md-12">
                     <div class="card-footer">
                         <p class="card-text">
-                            <a class="btn btn-success text-white" ><i class="bi bi-card-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))</a>
+                            <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id">
+                                <i class="bi bi-card-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))
+                                </a>
                             <a class="btn btn-outline-primary float-end" asp-action="Index">
                                 <i class="bi bi-arrow-90deg-left"></i> Back To List
                             </a>
