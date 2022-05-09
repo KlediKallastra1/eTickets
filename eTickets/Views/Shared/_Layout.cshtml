@@ -23,37 +23,28 @@
                         <li class="navbar-nav">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Movies" asp-action="index"> <i class="badge-info bi-film"></i> Movies</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expandable="false">
-                                <i class="bi bi-gear"></i> Management
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="Cinemas" asp-action="index"> <i class="bi bi-camera-reels"></i> Cinema</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Producers" asp-action="index"> <i class="bi bi-headset"></i> Producer</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Actors" asp-action="index"> <i class="bi bi-person-square"></i> Actor</a>
-                            </div>
-                        </li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expandable="false">
+                                    <i class="bi bi-gear"></i> Management
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Cinemas" asp-action="index"> <i class="bi bi-camera-reels"></i> Cinema</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Producers" asp-action="index"> <i class="bi bi-headset"></i> Producer</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Actors" asp-action="index"> <i class="bi bi-person-square"></i> Actor</a>
+                                </div>
+                            </li>
+                        }
                     </ul>
-                    <form class="d-flex align-items-center my-1 my-lg-2" style="padding-right:25px" asp-area="" asp-controller="Movies" asp-action="Filter" >
+                    <form class="d-flex align-items-center my-1 my-lg-2" style="padding-right:25px" asp-area="" asp-controller="Movies" asp-action="Filter">
                         <input name="searchString" type="text" class="form-control" placeholder="Search for a movie..." />
                         <button class="btn btn-outline-succes my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
                     </form>
                     <ul class="navbar-nav">
                         @await Component.InvokeAsync("ShoppingCartSummary")
                     </ul>
-                    @*User profile section*@
-                    <div class="dropdown">
-                        <button class="btn btn-outline-success dropdown-toggle" type="button" id="profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-badge"></i> Hello User
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="profile-btn">
-                            <li>
-                                <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
-                                    <i class="bi bi-list"></i> Orders
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <partial name="_Identity.cshtml" />
                 </div>
             </div>
         </nav>

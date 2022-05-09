@@ -1,4 +1,6 @@
-﻿using eTickets.Entities;
+﻿using eTickets.Data.Static;
+using eTickets.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace eTickets.Data
 {
@@ -122,6 +124,50 @@ namespace eTickets.Data
                         }
                     });
                     context.SaveChanges();
+                }
+            }
+        }
+
+        public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
+        {
+            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+            {
+                //Role's Sector
+                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                if (!await roleManager.RoleExistsAsync(UserRoles.Admin)) await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                if (!await roleManager.RoleExistsAsync(UserRoles.User)) await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+
+                //User's Sector
+                var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                var adminUser = await userManager.FindByEmailAsync("admin@eTickets.al");
+                if(adminUser == null)
+                {
+                    var newAdminUser = new ApplicationUser
+                    {
+                        FirstName = "Admin",
+                        LastName = "Kledi",
+                        UserName = "admin",
+                        Email = "admin@eTickets.al",
+                        EmailConfirmed = true
+                    };
+                    await userManager.CreateAsync(newAdminUser, "Prill2022!");
+                    await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+                }
+
+                var appUser = await userManager.FindByEmailAsync("user@eTickets.al");
+                if (appUser == null)
+                {
+                    var newAppUser = new ApplicationUser
+                    {
+                        FirstName = "Normal User",
+                        LastName = "Kledi",
+                        UserName = "user",
+                        DOB = new DateTime(1999,05,13),
+                        Email = "user@eTickets.al",
+                        EmailConfirmed = true
+                    };
+                    await userManager.CreateAsync(newAppUser, "Prill2022!");
+                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
             }
         }
