@@ -4,6 +4,7 @@ using eTickets.Entities;
 using eTickets.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Controllers
 {
@@ -18,6 +19,12 @@ namespace eTickets.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+        }
+
+        public async Task<IActionResult >Users()
+        {
+            var users = await _context.Users.ToListAsync();
+            return View(users);
         }
 
         public IActionResult Login() => View(new LoginViewModel());
@@ -84,6 +91,11 @@ namespace eTickets.Controllers
                 return View("RegisterCompleted");
             }
             return View(model);
+        }
+
+        public IActionResult AccessDenied(string returnUrl)
+        {
+            return View();
         }
     }
 }
