@@ -26,7 +26,16 @@ namespace eTickets.Controllers
         {
             var actorDetails = await _service.GetByIdAsync(id);
             if (actorDetails == null) return View("NotFound");
-            return View(actorDetails);
+
+            var model = new ActorViewModel
+            {
+                Id = id,
+                ActorName = actorDetails.ActorName,
+                ProfilePicturePath = actorDetails.ProfilePicturePath,
+                Biography = actorDetails.Biography,
+            };
+
+            return View(model);
         }
 
 

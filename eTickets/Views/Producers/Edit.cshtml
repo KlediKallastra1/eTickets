@@ -1,13 +1,13 @@
-﻿@model CinemaViewModel
+﻿@model ProducerViewModel
 
 @{
-    ViewData["Title"] = "Update Cinema";
+    ViewData["Title"] = "Update Producer";
 }
 
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Update Actor</h1>
+            <h1>@ViewData["Title"]</h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
@@ -17,19 +17,19 @@
                         <img id="ProfilePicturePreview" class="border-info rounded" style="max-width: 350px; max-height: 350px;" />
                     </div>
                     <div class="form-group">
-                        <label asp-for="LogoPath" class="control-label"></label>
-                        <input asp-for="LogoPath" class="form-control" />
-                        <span asp-validation-for="LogoPath" class="text-danger"></span>
+                        <label asp-for="ProfilePicturePath" class="control-label"></label>
+                        <input asp-for="ProfilePicturePath" class="form-control" />
+                        <span asp-validation-for="ProfilePicturePath" class="text-danger"></span>
                     </div>
                     <div class="form-group" style="padding-top: 20px;">
-                        <label asp-for="CinemaName" class="control-label"></label>
-                        <input asp-for="CinemaName" class="form-control" />
-                        <span asp-validation-for="CinemaName" class="text-danger"></span>
+                        <label asp-for="ProducerName" class="control-label"></label>
+                        <input asp-for="ProducerName" class="form-control" />
+                        <span asp-validation-for="ProducerName" class="text-danger"></span>
                     </div>
                     <div class="form-group" style="padding-top: 20px;">
-                        <label asp-for="Description" class="control-label"></label>
-                        <input asp-for="Description" class="form-control" />
-                        <span asp-validation-for="Description" class="text-danger"></span>
+                        <label asp-for="Biography" class="control-label"></label>
+                        <input asp-for="Biography" class="form-control" />
+                        <span asp-validation-for="Biography" class="text-danger"></span>
                     </div>
 
                     <div class="form-group" style="padding-top: 20px;">
