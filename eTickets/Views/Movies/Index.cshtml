@@ -6,7 +6,11 @@
 }
 
 <h1 class="justify-content-center text-center">@ViewData["Title"]</h1>
-<br /><hr style="height:2px; width:100%; border-width:0; color:black; background-color:black"><br /><br /><br />
+<br />
+<hr style="height:2px; width:100%; border-width:0; color:black; background-color:black">
+<br />
+<br />
+<br />
 <div class="row">
     @foreach (var item in Model)
     {
@@ -18,11 +22,11 @@
                             <p class="card-text">
                                 <h5 class="card-title">
                                     @item.Name
-                                    @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                     {
                                         <a class="text-white float-end" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
                                     }
-                                    
+
                                 </h5>
                             </p>
                         </div>
@@ -32,7 +36,6 @@
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
-                            <p class="card-text">@item.Description</p>
                             <p class="card-text"><b>Cinema: </b>@item.Cinema.CinemaName</p>
                             <p class="card-text"><b>Category: </b>@item.MovieCategory</p>
                             <p class="card-text"><b>Start Date: </b>@item.StartDate.Value.ToString("dd MMM yy")</p>
@@ -57,9 +60,24 @@
                     <div class="col-md-12">
                         <div class="card-footer">
                             <p class="card-text">
-                                <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
-                                    <i class="bi bi-card-plus"></i> Add to Cart (Price @item.Price.ToString("c"))
+                                @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                                {
+                                    <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
+                                        <i class="bi bi-card-plus"></i> Add to Cart (Price @item.Price.ToString("c"))
                                     </a>
+                                }
+                                else if (DateTime.Now >= item.EndDate)
+                                {
+                                    <a class="btn btn-danger text-white">
+                                        <i class="bi bi-card-plus"></i> You are too late. Listing Expired
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-primary text-white">
+                                        <i class="bi bi-card-plus"></i> Comming Soon (Price @item.Price.ToString("c"))
+                                    </a>
+                                }
                                 <a class="btn btn-outline-primary float-end" asp-action="Details" asp-route-id="@item.Id">
                                     <i class="bi bi-eye-fill"></i> Show Details
                                 </a>

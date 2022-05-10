@@ -5,10 +5,14 @@
 }
 
 <h1 class="justify-content-center text-center">@ViewData["Title"]</h1>
-<br /><hr style="height:2px; width:100%; border-width:0; color:black; background-color:black"><br /><br /><br />
+<br />
+<hr style="height:2px; width:100%; border-width:0; color:black; background-color:black">
+<br />
+<br />
+<br />
 <div class="row">
     <div class="col-md-8 offset-2">
-        <div class="card mb-3" >
+        <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-12">
                     <div class="card-header text-white bg-info">
@@ -24,13 +28,14 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <p class="card-text">@Model.Description</p>
-                        <p class="card-text"><b>Cinema: </b>
+                        <p class="card-text">
+                            <b>Cinema: </b>
                             <a asp-controller="Cinemas" asp-action="Details" asp-route-id="@Model.CinemaId">
                                 @Model.Cinema.CinemaName
                             </a>
                         </p>
-                        <p class="card-text"><b>Cinema: </b>
+                        <p class="card-text">
+                            <b>Cinema: </b>
                             <a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.ProducerId">
                                 @Model.Producer.ProducerName
                             </a>
@@ -55,25 +60,58 @@
                         </p>
                         <p class="card-text">
                             <b>Actors: </b>
-                            <div class="row">
-                                @foreach (var actor in Model.Actors_Movies)
-                               {
-                                   <div class="col-md-5 text-center">
-                                       <img class="border-info rounded" src="@actor.Actor.ProfilePicturePath" style="max-width: 150px;" />
-                                       <br>
-                                       <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.ActorId">@actor.Actor.ActorName</a>
-                                   </div>
-                               }
-                            </div>
+                            @if (Model.Actors_Movies.Count() < 4)
+                            {
+                                <div class="row justify-content-center text-center">
+                                    @foreach (var actor in Model.Actors_Movies)
+                                    {
+                                        <div class="col-md-3 text-center">
+                                            <img class="border-info rounded" src="@actor.Actor.ProfilePicturePath" style="max-width: 150px;" />
+                                            <br>
+                                            <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.ActorId">@actor.Actor.ActorName</a>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="row">
+                                    @foreach (var actor in Model.Actors_Movies)
+                                    {
+                                        <div class="col-md-3 text-center">
+                                            <img class="border-info rounded" src="@actor.Actor.ProfilePicturePath" style="max-width: 150px;" />
+                                            <br>
+                                            <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.ActorId">@actor.Actor.ActorName</a>
+                                        </div>
+                                    }
+                                </div>
+                            }
+
                         </p>
+                        <p class="card-text">@Model.Description</p>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="card-footer">
                         <p class="card-text">
-                            <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id">
-                                <i class="bi bi-card-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))
+                            @if (DateTime.Now >= Model.StartDate && DateTime.Now <= Model.EndDate)
+                            {
+                                <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id">
+                                    <i class="bi bi-card-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))
                                 </a>
+                            }
+                            else if (DateTime.Now >= Model.EndDate)
+                            {
+                                <a class="btn btn-danger text-white">
+                                    <i class="bi bi-card-plus"></i> You are too late. Listing Expired
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-primary text-white">
+                                    <i class="bi bi-card-plus"></i> Comming Soon (Price @Model.Price.ToString("c"))
+                                </a>
+                            }
                             <a class="btn btn-outline-primary float-end" asp-action="Index">
                                 <i class="bi bi-arrow-90deg-left"></i> Back To List
                             </a>
