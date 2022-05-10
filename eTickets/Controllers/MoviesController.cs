@@ -4,9 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using eTickets.Data.Services;
 using eTickets.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using eTickets.Data.Static;
 
 namespace eTickets.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class MoviesController : Controller
     {
         private readonly IMoviesService _service;
@@ -15,12 +18,14 @@ namespace eTickets.Controllers
             _service = service;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var data = await _service.GetAllAsync(n => n.Cinema);
             return View(data);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Filter(string searchString)
         {
             var data = await _service.GetAllAsync(n => n.Cinema);
@@ -35,6 +40,7 @@ namespace eTickets.Controllers
         }
 
         //Get: Movies/Details/id=?
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var data = await _service.GetMovieByIdAsync(id);
@@ -49,7 +55,9 @@ namespace eTickets.Controllers
                 ImagePath = data.ImagePath,
                 MovieCategory = data.MovieCategory,
                 Cinema = data.Cinema,
+                CinemaId = data.CinemaId,
                 Producer = data.Producer,
+                ProducerId = data.ProducerId,
                 Actors_Movies = data.Actors_Movies
             };
             return View(movie);

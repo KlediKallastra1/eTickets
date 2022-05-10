@@ -84,7 +84,7 @@ namespace eTickets.Data
                             Price = 40.76,
                             MovieCategory = MovieCategory.Comedy,
                             CinemaId = 1,
-                            ProducerId = 4
+                            ProducerId = 2
                         },
                         new Movie(){
                             Name = "Movie 2",
@@ -95,7 +95,7 @@ namespace eTickets.Data
                             Price =  91.25,
                             MovieCategory = MovieCategory.Action,
                             CinemaId = 2,
-                            ProducerId = 3
+                            ProducerId = 1
                         }
                     });
                     context.SaveChanges();
@@ -108,23 +108,19 @@ namespace eTickets.Data
                     {
                         new Actor_Movie(){
                             ActorId = 2,
-                            MovieId = 10
+                            MovieId = 3
                         },
                         new Actor_Movie(){
-                            ActorId = 3,
-                            MovieId = 11
+                            ActorId = 1,
+                            MovieId = 4
                         },
                         new Actor_Movie(){
-                            ActorId = 4,
-                            MovieId = 12
+                            ActorId = 1,
+                            MovieId = 4
                         },
                         new Actor_Movie(){
-                            ActorId = 3,
-                            MovieId = 13
-                        },
-                        new Actor_Movie(){
-                            ActorId = 5,
-                            MovieId = 14
+                            ActorId = 2,
+                            MovieId = 3
                         }
                     });
                     context.SaveChanges();
