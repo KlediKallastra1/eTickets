@@ -32,7 +32,7 @@
                         <td class="justify-content-center text-center align-middle">
                             @Html.DisplayFor(modelItem => item.ActorName)
                         </td>
-                        <td class="justify-content-center text-center align-middle">
+                        <td class="justify-content-center text-center align-middle" style="max-width: 400px;">
                             @Html.DisplayFor(modelItem => item.Biography)
                         </td>
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
