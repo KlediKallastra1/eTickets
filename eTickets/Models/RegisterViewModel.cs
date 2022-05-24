@@ -30,5 +30,9 @@ namespace eTickets.Models
         [Required(ErrorMessage = "A Date is required")]
         [Display(Name = "Date of Birth")]
         public DateTime DOB { get; set; }
+
+        [Required(ErrorMessage = "A profile picture is required")]
+        [Display(Name = "Profile Picture")]
+        public string ProfilePicturePath { get; set; }
     }
 }
