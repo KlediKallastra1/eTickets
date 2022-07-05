@@ -147,6 +147,7 @@ namespace eTickets.Data
                         FirstName = "Admin",
                         LastName = "Kledi",
                         UserName = "admin",
+                        //ProfilePicturePath = "nopath",
                         Email = "admin@eTickets.al",
                         EmailConfirmed = true
                     };
@@ -163,6 +164,7 @@ namespace eTickets.Data
                         LastName = "Kledi",
                         UserName = "user",
                         DOB = new DateTime(1999,05,13),
+                        //ProfilePicturePath = "nopath",
                         Email = "user@eTickets.al",
                         EmailConfirmed = true
                     };

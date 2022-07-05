@@ -13,5 +13,8 @@ namespace eTickets.Entities
 
         [Display(Name = "Date of Birth")]
         public DateTime DOB { get; set; }
+
+        //[Display(Name = "Profile Picture")]
+        //public string ProfilePicturePath { get; set; }
     }
 }

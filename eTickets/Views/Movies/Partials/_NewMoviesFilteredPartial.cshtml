@@ -1,0 +1,48 @@
+﻿@using eTickets.Data
+@model IEnumerable<Movie>
+
+
+<!-- Products tab & slick -->
+<div class="col-md-12">
+    <div class="row">
+        <div class="products-tabs">
+            <!-- tab -->
+            <div id="tab1" class="tab-pane active">
+                <div class="products-slick" data-nav="#slick-nav-1">
+                    <!-- product -->
+                    @foreach (var item in Model)
+                    {
+                        <div class="product">
+                            <div class="product-img">
+                                <img src=@item.ImagePath alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">@item.MovieCategory.ToString()</p>
+                                <h3 class="product-name"><a href="#">@item.Name</a></h3>
+                                <h4 class="product-price">$@String.Format("{0:0.00}", (item.Price - 30)) <del class="product-old-price">$@item.Price</del></h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product-btns">
+                                    <a class="quick-view" asp-controller="Movies" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-eye"></i><span class="tooltipp"> Details</span></a>
+                                </div>
+                            </div>
+                            <div class="add-to-cart">
+                                <a class="add-to-cart-btn" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id"><i class="fa fa-shopping-cart"></i> Add To Cart</a>
+                            </div>
+                        </div>
+
+                    }
+                    <!-- /product -->
+                </div>
+                <div id="slick-nav-1" class="products-slick-nav"></div>
+            </div>
+            <!-- /tab -->
+        </div>
+    </div>
+</div>
+<!-- Products tab & slick -->

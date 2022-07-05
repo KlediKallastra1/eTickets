@@ -1,0 +1,18 @@
+﻿@using eTickets.Data
+
+<div class="col-md-6">
+    <div class="header-search">
+        <form asp-area="" asp-controller="Movies" asp-action="Filter">
+            <select class="input-select">
+                <option value="0">All Categories</option>
+                @foreach (var item in Enum.GetValues(typeof(MovieCategory)))
+                {
+                    <option value="1">@item</option>
+                }
+
+            </select>
+            <input name="searchString" type="text" class="input" placeholder="Search for a movie...">
+            <button class="search-btn" type="submit"><i class="bi bi-search"></i> Search</button>
+        </form>
+    </div>
+</div>

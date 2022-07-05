@@ -6,6 +6,7 @@ using eTickets.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
 using eTickets.Data.Static;
+//using System.Web.Mvc;
 
 namespace eTickets.Controllers
 {
@@ -32,11 +33,23 @@ namespace eTickets.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                var filteredMovie = data.Where(n => n.Name.Contains(searchString) || n.Description.Contains(searchString));
+                var filteredMovie = data.Where(n => n.Name.ToLower().Contains(searchString) || n.Description.Contains(searchString));
                 return View("Index", filteredMovie);
             }
 
             return View("Index", data);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> FilterSelection(MovieCategory movieCategory)
+        {
+            var data = await _service.GetAllAsync();
+            if(movieCategory != null)
+                data = data
+                    .Where(n => n.MovieCategory == movieCategory);
+
+            return PartialView("Partials/_NewMoviesFilteredPartial", data);
         }
 
         //Get: Movies/Details/id=?

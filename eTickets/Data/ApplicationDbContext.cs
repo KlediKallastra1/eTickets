@@ -19,6 +19,7 @@ namespace eTickets.Data
 
             modelBuilder.Entity<Actor_Movie>().HasOne(am => am.Movie).WithMany(am => am.Actors_Movies).HasForeignKey(am => am.MovieId);
             modelBuilder.Entity<Actor_Movie>().HasOne(am => am.Actor).WithMany(am => am.Actors_Movies).HasForeignKey(am => am.ActorId);
+            modelBuilder.Entity<OrderItem>().HasOne(o => o.Order).WithMany(o => o.OrderItems).HasForeignKey(o => o.OrderId);
 
             base.OnModelCreating(modelBuilder);
         }
