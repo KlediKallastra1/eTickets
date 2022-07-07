@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - eTickets</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/eTickets.styles.css" asp-append-version="true" />
@@ -35,7 +35,7 @@
         <div id="top-header">
             <div class="container">
                 <ul class="header-links pull-left" style="padding-top: 8px">
-                    <li><a href="#"><i class="fa fa-phone"></i> +355 69 292 3548</a></li>
+                    <li><a><i class="fa fa-phone"></i> +355 69 292 3548</a></li>
                     <li><a href="mailto:kkallastra17@epoka.edu.al"><i class="fa fa-envelope-o"></i> kkallastra17@epoka.edu.al</a></li>
                     <li><a href="https://www.google.com/maps/place/Epoka+University/41.4046899,19.7041692,17z/data=!3m1!4b1!4m5!3m4!1s0x13502c4d8e14227d:0x92c16879aa946786!8m2!3d41.40506!4d19.705836"><i class="fa fa-map-marker"></i> Autostrada Tiranë-Rinas, km. 12</a></li>
                 </ul>
@@ -55,7 +55,7 @@
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="#" class="logo">
+                            <a href="~/Movies" class="logo">
                                 <img src="/img/logo.png" alt="">
                             </a>
                         </div>
@@ -142,6 +142,9 @@
             @RenderBody()
         </main>
     </div>
+    <!-- FOOTER -->
+    <partial name="~/Views/Movies/Partials/_FooterPartial.cshtml"></partial>
+    <!-- /FOOTER -->
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

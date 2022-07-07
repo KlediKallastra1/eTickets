@@ -1,0 +1,59 @@
+﻿@inject UserManager<ApplicationUser> UserManager;
+
+<div id="newsletter" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="newsletter">
+                    
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        var email = await UserManager.GetEmailAsync(await UserManager.GetUserAsync(User));
+                        <p>Sign Up for the <strong>NEWSLETTER</strong></p>
+                        <form>
+                            <input class="input" id="emailAddress" type="email" value="@email" disabled>
+                            <button class="newsletter-btn" disabled id="registerEmail"><i class="fa fa-envelope"></i> Subscribe</button>
+                        </form>
+                        <ul class="newsletter-checkboxes">
+                            <li>
+                                <input type="checkbox" id="diffEmail">
+                                <label style="padding-right: 58px;">Use Different Email</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="consent">
+                                <label>I consent to recieving emails</label>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>Welcome to the <strong>NEWSLETTER</strong></p>
+                        <form>
+                            <input class="input" id="emailAddress" type="email" placeholder="Click 'Subscribe' to Sign Up for this function." disabled>
+                            <button class="newsletter-btn" id="registerEmail" asp-controller="Account" asp-action="Register"><i class="fa fa-envelope"></i> Subscribe</button>
+                        </form>
+
+                    }
+                    <ul class="newsletter-follow">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>

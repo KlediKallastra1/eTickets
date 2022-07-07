@@ -19,7 +19,7 @@
                             <div class="product-body">
                                 <p class="product-category">@item.MovieCategory.ToString()</p>
                                 <h3 class="product-name"><a href="#">@item.Name</a></h3>
-                                <h4 class="product-price">$@String.Format("{0:0.00}", (item.Price - 30)) <del class="product-old-price">$@item.Price</del></h4>
+                                <h4 class="product-price">$@String.Format("{0:0.00}", (item.Price - (30*item.Price/100))) <del class="product-old-price">$@item.Price</del></h4>
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -31,9 +31,25 @@
                                     <a class="quick-view" asp-controller="Movies" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-eye"></i><span class="tooltipp"> Details</span></a>
                                 </div>
                             </div>
-                            <div class="add-to-cart">
-                                <a class="add-to-cart-btn" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id"><i class="fa fa-shopping-cart"></i> Add To Cart</a>
-                            </div>
+                            @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                            {
+                                <div class="add-to-cart">
+                                    <a class="add-to-cart-btn" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id"><i class="fa fa-shopping-cart"></i> Add To Cart</a>
+                                </div>
+                            }
+                            else if (DateTime.Now >= item.EndDate)
+                            {
+                                <div class="add-to-cart">
+                                    <button class="add-to-cart-btn" disabled>You are too late</button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="add-to-cart">
+                                    <button class="add-to-cart-btn" disabled>You are too early</button>
+                                </div>
+                            }
+
                         </div>
 
                     }

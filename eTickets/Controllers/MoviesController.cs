@@ -27,6 +27,13 @@ namespace eTickets.Controllers
         }
 
         [AllowAnonymous]
+        public async Task<IActionResult> Store()
+        {
+            var data = await _service.GetAllAsync(n => n.Cinema);
+            return View(data);
+        }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Filter(string searchString)
         {
             var data = await _service.GetAllAsync(n => n.Cinema);
@@ -50,6 +57,18 @@ namespace eTickets.Controllers
                     .Where(n => n.MovieCategory == movieCategory);
 
             return PartialView("Partials/_NewMoviesFilteredPartial", data);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> FilterSelectionTopSeller(MovieCategory movieCategory)
+        {
+            var data = await _service.GetAllAsync();
+            if (movieCategory != null)
+                data = data
+                    .Where(n => n.MovieCategory == movieCategory);
+
+            return PartialView("Partials/_TopSellerPartial", data);
         }
 
         //Get: Movies/Details/id=?

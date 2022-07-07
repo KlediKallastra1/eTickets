@@ -1,0 +1,95 @@
+﻿@using eTickets.Data
+
+<footer id="footer">
+    <!-- top footer -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">About Us</h3>
+                        <p style="padding-bottom: 35px;">This is the place where heaven meets earth. With our low prices and great quality movies, you will enjoy it fully.</p>
+                        <ul class="footer-links">
+                            <li><a><i class="fa fa-phone"></i> +355 69 292 3548</a></li>
+                            <li><a href="mailto:kkallastra17@epoka.edu.al"><i class="fa fa-envelope-o"></i> kkallastra17@epoka.edu.al</a></li>
+                            <li><a href="https://www.google.com/maps/place/Epoka+University/41.4046899,19.7041692,17z/data=!3m1!4b1!4m5!3m4!1s0x13502c4d8e14227d:0x92c16879aa946786!8m2!3d41.40506!4d19.705836"><i class="fa fa-map-marker"></i> Autostrada Tiranë-Rinas, km. 12</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Categories</h3>
+                        <ul class="footer-links">
+                            @foreach (var item in Enum.GetValues(typeof(MovieCategory)))
+                            {
+                                <li><a asp-action="" asp-controller="" asp-route-movieCategory="@item">@item</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="clearfix visible-xs"></div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Information</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Orders and Returns</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">These links</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Service</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">My Account</a></li>
+                            <li><a asp-action="ShoppingCart" asp-controller="Orders">View Cart</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                            <li><a href="#">Track My Order</a></li>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">Don't go anywhere</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /top footer -->
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <ul class="footer-payments">
+                        <li><a><i class="fa fa-cc-visa"></i></a></li>
+                        <li><a><i class="fa fa-credit-card"></i></a></li>
+                        <li><a><i class="fa fa-cc-paypal"></i></a></li>
+                        <li><a><i class="fa fa-cc-mastercard"></i></a></li>
+                        <li><a><i class="fa fa-cc-discover"></i></a></li>
+                        <li><a><i class="fa fa-cc-amex"></i></a></li>
+                    </ul>
+                    <span class="copyright">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.linkedin.com/in/kledi-kallastra-26a801189/" target="_blank">Kledi Kallastra</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </span>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>

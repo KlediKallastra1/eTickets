@@ -10,7 +10,6 @@
         datatype: 'html',
         url: "/Movies/FilterSelection?movieCategory=" + cat,
         success: function (result) {
-            console.log(index, divId);
             $(divId).html('');
             $(divId).html(result);
         },

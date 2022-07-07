@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Movie>
+
+
+@{
+    var i = 0;
+    @foreach (var item in Model)
+    {
+        <div class="product-widget">
+            <div class="product-img">
+                <img src="@item.ImagePath" alt="">
+            </div>
+            <div class="product-body">
+                <p class="product-category">@item.MovieCategory</p>
+                <h3 class="product-name"><a asp-controller="Movies" asp-action="Details" asp-route-id="@item.Id">@item.Name</a></h3>
+                <h4 class="product-price">$@String.Format("{0:0.00}", (item.Price - 30)) <del class="product-old-price">$@item.Price</del></h4>
+            </div>
+        </div>
+        if (i == 2)
+        {
+            @:</div>
+            @:<div>
+        }
+        i++;
+    }
+   
+}
