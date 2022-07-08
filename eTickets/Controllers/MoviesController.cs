@@ -71,6 +71,18 @@ namespace eTickets.Controllers
             return PartialView("Partials/_TopSellerPartial", data);
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> FilterStore(MovieCategory movieCategory)
+        {
+            var data = await _service.GetAllAsync();
+            if (movieCategory != 0)
+                data = data
+                    .Where(n => n.MovieCategory == movieCategory);
+
+            return PartialView("Partials/_MovieShopPartial", data);
+        }
+
         //Get: Movies/Details/id=?
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id)

@@ -142,6 +142,9 @@
             @RenderBody()
         </main>
     </div>
+    <!-- NEWSLETTER -->
+    <partial name="~/Views/Movies/Partials/_NewsletterPartial.cshtml" />
+    <!-- /NEWSLETTER -->
     <!-- FOOTER -->
     <partial name="~/Views/Movies/Partials/_FooterPartial.cshtml"></partial>
     <!-- /FOOTER -->
@@ -149,6 +152,14 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/slick.min.js"></script>
+    <script src="/js/nouislider.min.js"></script>
+    <script src="/js/jquery.zoom.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/FilteringMovies.js"></script>
+    <script src="/js/CountdownTimer.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
