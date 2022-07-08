@@ -12,8 +12,6 @@ function postFilter(cat, index) {
     else if (index === '1') divId = '#movieSelection2';
     else divId = '#movieSelection3';
 
-    console.log(cat);
-
     $.ajax({
         type: "GET",
         data: "{'movieCategory':" + "'" + cat + "'}",

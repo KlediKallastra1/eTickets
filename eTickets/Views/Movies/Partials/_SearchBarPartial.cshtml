@@ -2,17 +2,24 @@
 
 <div class="col-md-6">
     <div class="header-search">
-        <form asp-area="" asp-controller="Movies" asp-action="Filter">
-            <select class="input-select">
+        <form asp-controller="Movies" asp-action="Filter">
+            <select class="input-select" id="selectedOption">
                 <option value="0">All Categories</option>
                 @foreach (var item in Enum.GetValues(typeof(MovieCategory)))
                 {
                     <option value="1">@item</option>
                 }
-
             </select>
+            <input name="movieCategory" id="searchMovieValue" type="text" class="input" hidden />
             <input name="searchString" type="text" class="input" placeholder="Search for a movie...">
             <button class="search-btn" type="submit"><i class="bi bi-search"></i> Search</button>
         </form>
     </div>
+    <script>
+        document.getElementById('selectedOption').onchange = (e) => {
+            var cat = e.target.options[e.target.selectedIndex].text;
+            var val = document.getElementById('searchMovieValue');
+            val.value = cat;
+        };
+    </script>
 </div>

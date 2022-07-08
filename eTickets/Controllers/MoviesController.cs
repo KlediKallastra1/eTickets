@@ -34,17 +34,18 @@ namespace eTickets.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Filter(string searchString)
+        public async Task<IActionResult> Filter(MovieCategory movieCategory, string searchString)
         {
             var data = await _service.GetAllAsync(n => n.Cinema);
 
             if (!string.IsNullOrEmpty(searchString))
             {
                 var filteredMovie = data.Where(n => n.Name.ToLower().Contains(searchString) || n.Description.Contains(searchString));
-                return View("Index", filteredMovie);
+                filteredMovie = filteredMovie.Where(n => n.MovieCategory == movieCategory);
+                return View("Store", filteredMovie);
             }
 
-            return View("Index", data);
+            return View("Store", data);
         }
 
         [AllowAnonymous]
